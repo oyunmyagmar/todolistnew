@@ -1,7 +1,9 @@
+import { Button } from "@/components";
+
 const Home = () => {
   return (
     <div className="w-full h-screen flex justify-center pt-15 font-sans">
-      <div className="w-[377px] rounded-md py-6 px-4 bg-[#FFFFFF] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.16)] text-center box-border">
+      <div className="w-[377px] h-[290px] rounded-md py-6 px-4 bg-[#FFFFFF] shadow-[0_0_12px_0_rgba(0,0,0,0.16)] text-center">
         <div className="w-[345px] ">
           <div className="flex flex-col gap-5">
             <h1 className="text-lg leading-7 font-semibold text-black">
@@ -16,6 +18,7 @@ const Home = () => {
               <button>Add</button>
             </div>
             <div className="flex gap-1.5">
+              <Button></Button>
               <button>All</button>
               <button>Active</button>
               <button>Completed</button>
