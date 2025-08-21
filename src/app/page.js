@@ -15,13 +15,24 @@ const Home = () => {
                 placeholder="Add a new task..."
                 className="w-70 h-10 rounded-md border border-[#E4E4E7] py-2 px-4"
               ></input>
-              <button>Add</button>
+              <Button
+                className="text-sm leading-[17px] py-[11.5px] px-4 text-white bg-blue-500"
+                name="Add"
+              ></Button>
             </div>
             <div className="flex gap-1.5">
-              <Button></Button>
-              <button>All</button>
-              <button>Active</button>
-              <button>Completed</button>
+              <Button
+                className="text-xs leading-[15px] bg-gray-100 py-[8.5px] px-4 text-[#363636]"
+                name="All"
+              ></Button>
+              <Button
+                className="text-xs leading-[15px] bg-gray-100 py-[8.5px] px-4 text-[#363636]"
+                name="Active"
+              ></Button>
+              <Button
+                className="text-xs leading-[15px] bg-gray-100 py-[8.5px] px-4 text-[#363636]"
+                name="Completed"
+              ></Button>
             </div>
           </div>
 
