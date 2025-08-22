@@ -13,18 +13,24 @@ const TodoPage = () => {
   };
 
   const handleOnClick = () => {
-    setTodos([...todos, inputValue]);
+    setTodos([...todos, { title: inputValue, isDone: true }]);
+    setInputValue("");
   };
 
   return (
     <div>
       <input
+        value={inputValue}
+        type="text"
         className="w-40 h-10 rounded-md border border-zinc-200 py-2 px-4 text-sm leading-[17px] text-zinc-500"
         placeholder="add todo"
         onChange={handleOnChange}
       ></input>
-      {todos.map((todo, i) => (
-        <div key={i}>{todo}</div>
+      {todos.map((todo, index) => (
+        <div className="flex gap-2" key={index}>
+          <input type="checkbox" defaultChecked={todo.isDone}></input>
+          <div key={index}>{todo.title}</div>
+        </div>
       ))}
       <button onClick={handleOnClick}> Add Count</button>
     </div>
