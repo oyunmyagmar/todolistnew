@@ -23,7 +23,7 @@ const TodoPage = () => {
   ];
 
   const [task, setTask] = useState(0);
-  console.log(task);
+  // console.log(task);
 
   return (
     <div>

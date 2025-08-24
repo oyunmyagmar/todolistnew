@@ -1,23 +1,26 @@
-"use client";
-import { useState } from "react";
+// "use client";
+// import { useState } from "react";
 import { Button, Task } from "@/components";
 
-const HomeToDo = () => {
-  const [todos, setTodos] = useState([]);
-
-  const [inputValue, setInputValue] = useState("");
-
-  const handleOnChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleOnClick = () => {
-    console.log(todos);
-
-    setTodos([...todos, { title: inputValue, isDone: false }]);
-    setInputValue("");
-  };
-
+const Home = () => {
+  const tasks = [
+    {
+      taskName: "to do homework",
+      isCompleted: true,
+    },
+    {
+      taskName: "to do exercise",
+      isCompleted: false,
+    },
+    {
+      taskName: "to do dinner",
+      isCompleted: false,
+    },
+    {
+      taskName: "to do cleaning",
+      isCompleted: true,
+    },
+  ];
   return (
     <div className="w-full h-screen flex justify-center pt-15 font-sans">
       <div className="w-[377px] h-fit rounded-md py-6 px-4 bg-[#FFFFFF] shadow-[0_0_12px_0_rgba(0,0,0,0.16)] text-center">
@@ -28,8 +31,6 @@ const HomeToDo = () => {
             </h1>
             <div className="flex gap-1.5">
               <input
-                value={inputValue}
-                onChange={handleOnChange}
                 type="text"
                 placeholder="Add a new task..."
                 className="w-70 h-10 rounded-md border border-zinc-200 py-2 px-4 text-sm leading-[17px] text-zinc-500"
@@ -38,7 +39,6 @@ const HomeToDo = () => {
                 className="text-sm leading-[17px] py-[11.5px] px-4"
                 name="Add"
                 isActive={true}
-                onClick={handleOnClick}
               ></Button>
             </div>
             <div className="flex gap-1.5">
@@ -60,9 +60,9 @@ const HomeToDo = () => {
             </div>
 
             <div className="flex flex-col gap-4">
-              {todos.map((todo, index) => (
-                <Task key={index + Math.random()} task={todo}></Task>
-              ))}
+              {tasks.map((el, index) => {
+                return <Task key={index} task={el}></Task>;
+              })}
             </div>
 
             {/* <div className="w-full h-[37px] flex justify-between pt-4 pb-1 text-sm border-t border-zinc-200">
@@ -86,4 +86,4 @@ const HomeToDo = () => {
     </div>
   );
 };
-export default HomeToDo;
+export default Home;

@@ -1,7 +1,8 @@
-export const Button = ({ className, name, isActive }) => {
+export const Button = ({ className, name, isActive, onClick }) => {
   // console.log(props);
   return (
     <button
+      onClick={onClick}
       className={
         "rounded-md " +
         className +
