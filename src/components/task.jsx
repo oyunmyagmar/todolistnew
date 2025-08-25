@@ -1,6 +1,6 @@
 "use client";
 export const Task = ({ task }) => {
-  // console.log(task);
+  console.log(task);
   return (
     <div className="w-full h-[62px] flex items-center justify-between px-4 rounded-md bg-gray-100">
       <div className="flex gap-2.5 items-center">
@@ -25,3 +25,9 @@ export const Task = ({ task }) => {
     </div>
   );
 };
+
+// {task.isDone && (
+//       <button className="text-sm text-red-500 bg-red-50 px-3 py-[6.5px] rounded-md">
+//         Delete
+//       </button>
+//     )}

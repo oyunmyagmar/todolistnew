@@ -12,7 +12,7 @@ const HomeToDo = () => {
   };
 
   const handleOnClick = () => {
-    console.log(todos);
+    // console.log(todos);
 
     setTodos([...todos, { title: inputValue, isDone: false }]);
     setInputValue("");
