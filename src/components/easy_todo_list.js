@@ -1,0 +1,48 @@
+import { useState } from "react";
+
+export function TodoList() {
+  const [inputValue, setInputValue] = useState("");
+  const handleOnChangeInput = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const [todos, setTodos] = useState([]);
+  const handleOnClick = () => {
+    setTodos([...todos, inputValue]);
+  };
+
+  const handleOnClickDelete = (index) => {
+    const filteredTodos = todos.filter((el, i) => i !== index);
+    setTodos([...filteredTodos]);
+  };
+
+  return (
+    <div>
+      <div className="flex gap-5">
+        <input
+          onChange={handleOnChangeInput}
+          value={inputValue}
+          type="text"
+          className="border"
+        ></input>
+        <button onClick={handleOnClick} className="border p-0.5 bg-gray-100">
+          Add Todo
+        </button>
+      </div>
+
+      <ul className="mt-5">
+        {todos.map((todo, index) => (
+          <li key={index}>
+            {todo}
+            <button
+              onClick={() => handleOnClickDelete(index)}
+              className="border p-0.5 bg-gray-100 ml-30"
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
