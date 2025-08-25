@@ -18,9 +18,7 @@ export function SearchFilter() {
       <ul>
         {items.filter(
           (item, index) =>
-            item.toLowerCase().includes(inputValue.toLowerCase) && (
-              <li>{item}</li>
-            )
+            item.toLowerCase().includes(inputValue) && <li>{item}</li>
         )}
       </ul>
     </div>

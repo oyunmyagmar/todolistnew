@@ -7,6 +7,7 @@ import {
   TodoList,
   ColorSwitcher,
   SearchFilter,
+  DragDropList,
 } from "@/components";
 
 const HomeTask = () => {
@@ -29,6 +30,9 @@ const HomeTask = () => {
       </div>
       <div>
         <SearchFilter></SearchFilter>
+      </div>
+      <div>
+        <DragDropList></DragDropList>
       </div>
     </div>
   );
