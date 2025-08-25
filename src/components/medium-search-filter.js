@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 const items = ["Apple", "Banana", "Carrot", "Date", "Eggplant", "Fig", "Grape"];
-items.forEach((item, index) => console.log(item.split("").includes("a")));
-console.log(Object.values(items));
 
 export function SearchFilter() {
   const [inputValue, setInputValue] = useState("");
@@ -18,9 +16,12 @@ export function SearchFilter() {
         value={inputValue}
       ></input>
       <ul>
-        {items.filter((item, index) => {
-          item.split("").includes(inputValue) && <li>{"item.value"}</li>;
-        })}
+        {items.filter(
+          (item, index) =>
+            item.toLowerCase().includes(inputValue.toLowerCase) && (
+              <li>{item}</li>
+            )
+        )}
       </ul>
     </div>
   );
