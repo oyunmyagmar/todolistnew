@@ -2,16 +2,20 @@ import { useState } from "react";
 
 export function TodoList() {
   const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState([]);
+
   const handleOnChangeInput = (event) => {
     setInputValue(event.target.value);
   };
 
-  const [todos, setTodos] = useState([]);
-  const handleOnClick = () => {
+  const handleOnClickAdd = () => {
     setTodos([...todos, inputValue]);
+    // console.log("add todo", todos);
+    setInputValue("");
   };
 
   const handleOnClickDelete = (index) => {
+    // console.log("delete todo", index);
     const filteredTodos = todos.filter((el, i) => i !== index);
     setTodos([...filteredTodos]);
   };
@@ -23,9 +27,10 @@ export function TodoList() {
           onChange={handleOnChangeInput}
           value={inputValue}
           type="text"
+          placeholder="Type here..."
           className="border"
         ></input>
-        <button onClick={handleOnClick} className="border p-0.5 bg-gray-100">
+        <button onClick={handleOnClickAdd} className="border p-0.5 bg-gray-100">
           Add Todo
         </button>
       </div>

@@ -4,7 +4,7 @@ export * from "./easy_counter";
 export * from "./easy_controlled_input_field";
 export * from "./easy_toggle_visibility";
 export * from "./medium_character_counter";
-export * from "./easy_todo_list";
+export * from "./medium_todo_list";
 export * from "./medium_color_switcher";
 export * from "./medium_search_filter";
 export * from "./hard_drag_and_drop_list";

@@ -3,17 +3,14 @@ import { useState } from "react";
 import { Button, Task } from "@/components";
 
 const HomeToDo = () => {
-  const [todos, setTodos] = useState([]);
-
   const [inputValue, setInputValue] = useState("");
+  const [todos, setTodos] = useState([]);
 
   const handleOnChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleOnClick = () => {
-    // console.log(todos);
-
     setTodos([...todos, { title: inputValue, isDone: false }]);
     setInputValue("");
   };
@@ -28,40 +25,40 @@ const HomeToDo = () => {
             </h1>
             <div className="flex gap-1.5">
               <input
-                value={inputValue}
                 onChange={handleOnChange}
+                value={inputValue}
                 type="text"
                 placeholder="Add a new task..."
                 className="w-70 h-10 rounded-md border border-zinc-200 py-2 px-4 text-sm leading-[17px] text-zinc-500"
               ></input>
               <Button
+                onClick={handleOnClick}
+                isActive={true}
                 className="text-sm leading-[17px] py-[11.5px] px-4"
                 name="Add"
-                isActive={true}
-                onClick={handleOnClick}
               ></Button>
             </div>
             <div className="flex gap-1.5">
               <Button
+                isActive={false}
                 className="text-xs leading-[15px] py-[8.5px] px-3"
                 name="All"
-                isActive={false}
               ></Button>
               <Button
+                isActive={false}
                 className="text-xs leading-[15px] py-[8.5px] px-3"
                 name="Active"
-                isActive={false}
               ></Button>
               <Button
+                isActive={false}
                 className="text-xs leading-[15px] py-[8.5px] px-3"
                 name="Completed"
-                isActive={false}
               ></Button>
             </div>
 
             <div className="flex flex-col gap-4">
               {todos.map((todo, index) => (
-                <Task key={index + Math.random()} task={todo}></Task>
+                <Task key={index} task={todo}></Task>
               ))}
             </div>
 

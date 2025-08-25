@@ -2,14 +2,14 @@ import { useState } from "react";
 
 export function ToggleVisibility() {
   const [isVisible, setIsVisible] = useState(false);
-  const handleOnClickToggleVisibility = () => {
+  const handleOnClickToggle = () => {
     setIsVisible(!isVisible);
   };
 
   return (
     <div>
       <button
-        onClick={handleOnClickToggleVisibility}
+        onClick={handleOnClickToggle}
         className="border p-0.5 bg-gray-100"
       >
         Show/ Hide Text
