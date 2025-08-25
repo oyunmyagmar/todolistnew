@@ -4,7 +4,6 @@ export function ColorSwitcher() {
   const [bg, setBg] = useState("null");
 
   const handleOnChange = (event) => {
-    console.log(event, "event");
     setBg(event.target.value);
   };
 
@@ -18,7 +17,7 @@ export function ColorSwitcher() {
         <option value={"bg-white"}>White</option>
         <option value={"bg-indigo-500"}>Indigo</option>
       </select>
-      <div className={`w-20 h-20 border ${bg}`}></div>
+      <div className={`w-20 h-20 border mb-5 ${bg}`}></div>
     </div>
   );
 }
