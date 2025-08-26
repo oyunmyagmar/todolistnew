@@ -29,7 +29,6 @@ export const Task = ({ task, index, setTodos, todos }) => {
         <p
           className={`text-sm text-black leading-[17px] + ${
             task.isDone && "line-through"
-            // defaultChecked && "line-through"
           }`}
         >
           {task.title}

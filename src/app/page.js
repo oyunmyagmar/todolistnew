@@ -1,4 +1,5 @@
 "use client";
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { Button, Task } from "@/components";
 
@@ -13,13 +14,12 @@ const HomeToDo = () => {
   };
 
   const handleOnClickAdd = () => {
-    setTodos([...todos, { title: inputValue, isDone: false }]);
+    setTodos([...todos, { title: inputValue, isDone: false, id: uuidv4() }]);
     setInputValue("");
   };
 
   const handleOnClickAll = () => {
     setFilteredStatus("all");
-    console.log(Button);
   };
 
   const handleOnClickActive = () => {
