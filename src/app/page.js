@@ -10,11 +10,26 @@ const HomeToDo = () => {
     setInputValue(event.target.value);
   };
 
-  const handleOnClick = () => {
+  const handleOnClickAdd = () => {
     setTodos([...todos, { title: inputValue, isDone: false }]);
     setInputValue("");
   };
 
+  // const handleOnChangeChecked = (event) => {
+  //   setTodos((prev) =>
+  //     prev.map((el, i) => {
+  //       if (i === index) el.isDone = event.target.checked;
+  //       console.log(event.target.checked);
+  //       return el;
+  //     })
+  //   );
+  // };
+  // const handleOnClickDelete = () => {
+  //   const filteredTodos = todos.filter((todo, i) => i !== index);
+  //   setTodos(filteredTodos);
+  // };
+
+  const handleOnClickActive = () => {};
   return (
     <div className="w-full h-screen flex justify-center pt-15 font-sans">
       <div className="w-[377px] h-fit rounded-md py-6 px-4 bg-[#FFFFFF] shadow-[0_0_12px_0_rgba(0,0,0,0.16)] text-center">
@@ -32,7 +47,7 @@ const HomeToDo = () => {
                 className="w-70 h-10 rounded-md border border-zinc-200 py-2 px-4 text-sm leading-[17px] text-zinc-500"
               ></input>
               <Button
-                onClick={handleOnClick}
+                onClick={handleOnClickAdd}
                 isActive={true}
                 className="text-sm leading-[17px] py-[11.5px] px-4"
                 name="Add"
@@ -45,6 +60,7 @@ const HomeToDo = () => {
                 name="All"
               ></Button>
               <Button
+                onClick={handleOnClickActive}
                 isActive={false}
                 className="text-xs leading-[15px] py-[8.5px] px-3"
                 name="Active"
@@ -58,7 +74,13 @@ const HomeToDo = () => {
 
             <div className="flex flex-col gap-4">
               {todos.map((todo, index) => (
-                <Task key={index} task={todo}></Task>
+                <Task
+                  key={index}
+                  task={todo}
+                  index={index}
+                  setTodos={setTodos}
+                  todos={todos}
+                ></Task>
               ))}
             </div>
 

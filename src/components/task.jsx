@@ -1,33 +1,49 @@
 "use client";
-export const Task = ({ task }) => {
-  console.log(task);
+
+import { useState } from "react";
+
+export const Task = ({ task, index, setTodos, todos }) => {
+  const handleOnChangeChecked = (event) => {
+    setTodos((prev) =>
+      prev.map((el, i) => {
+        if (i === index) el.isDone = event.target.checked;
+        // console.log(event.target.checked);
+        return el;
+      })
+    );
+  };
+  const handleOnClickDelete = () => {
+    const filteredTodos = todos.filter((todo, ind) => ind !== index);
+    setTodos(filteredTodos);
+  };
+
   return (
     <div className="w-full h-[62px] flex items-center justify-between px-4 rounded-md bg-gray-100">
       <div className="flex gap-2.5 items-center">
         <input
           type="checkbox"
-          defaultChecked={task.isDone}
+          onChange={handleOnChangeChecked}
+          checked={task.isDone}
           className="w-5 h-5 rounded-xs bg-red-700 border border-[#767676]"
         ></input>
         <p
           className={`text-sm text-black leading-[17px] + ${
             task.isDone && "line-through"
+            // defaultChecked && "line-through"
           }`}
         >
           {task.title}
         </p>
       </div>
+
       {task.isDone && (
-        <button className="text-sm text-red-500 bg-red-50 px-3 py-[6.5px] rounded-md">
+        <button
+          onClick={handleOnClickDelete}
+          className="text-sm text-red-500 bg-red-50 px-3 py-[6.5px] rounded-md"
+        >
           Delete
         </button>
       )}
     </div>
   );
 };
-
-// {task.isDone && (
-//       <button className="text-sm text-red-500 bg-red-50 px-3 py-[6.5px] rounded-md">
-//         Delete
-//       </button>
-//     )}
