@@ -13,8 +13,8 @@ export const Task = ({ task, index, setTodos, todos }) => {
     );
   };
   const handleOnClickDelete = () => {
-    const filteredTodos = todos.filter((todo, ind) => ind !== index);
-    setTodos(filteredTodos);
+    const filteredRemainedTodos = todos.filter((todo, ind) => ind !== index);
+    setTodos(filteredRemainedTodos);
   };
 
   return (
