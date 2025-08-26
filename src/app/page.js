@@ -7,7 +7,6 @@ const HomeToDo = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
   const [filteredStatus, setFilteredStatus] = useState("all");
-  // const [filteredTodos, setFilteredTodos] = useState([]);
 
   const handleOnChange = (event) => {
     setInputValue(event.target.value);
@@ -16,6 +15,19 @@ const HomeToDo = () => {
   const handleOnClickAdd = () => {
     setTodos([...todos, { title: inputValue, isDone: false, id: uuidv4() }]);
     setInputValue("");
+  };
+
+  const handleOnChangeChecked = (event, index) => {
+    const checkedTodo = todos.map((todo, i) => {
+      if (i === index) todo.isDone = event.target.checked;
+      return todo;
+    });
+    setTodos(checkedTodo);
+  };
+
+  const handleOnClickDelete = (index) => {
+    const filteredRemainedTodos = todos.filter((todo, i) => i !== index);
+    setTodos(filteredRemainedTodos);
   };
 
   const handleOnClickAll = () => {
@@ -29,10 +41,11 @@ const HomeToDo = () => {
   const handleOnClickCompleted = () => {
     setFilteredStatus("completed");
   };
-  const filteredData = todos.filter((el) => {
-    if (filteredStatus === "all") return el;
-    if (filteredStatus === "active") return !el.isDone;
-    return el.isDone;
+
+  const filteredData = todos.filter((todo) => {
+    if (filteredStatus === "all") return todo;
+    if (filteredStatus === "active") return !todo.isDone;
+    return todo.isDone;
   });
 
   return (
@@ -61,32 +74,31 @@ const HomeToDo = () => {
             <div className="flex gap-1.5">
               <Button
                 onClick={handleOnClickAll}
-                isActive={false}
-                className="text-xs leading-[15px] py-[8.5px] px-3"
+                className={"text-xs leading-[15px] py-[8.5px] px-3"}
                 name="All"
+                filteredStatus={filteredStatus}
               ></Button>
               <Button
                 onClick={handleOnClickActive}
-                isActive={false}
-                className="text-xs leading-[15px] py-[8.5px] px-3"
+                className={"text-xs leading-[15px] py-[8.5px] px-3"}
                 name="Active"
+                filteredStatus={filteredStatus}
               ></Button>
               <Button
                 onClick={handleOnClickCompleted}
-                isActive={false}
-                className="text-xs leading-[15px] py-[8.5px] px-3"
+                className={"text-xs leading-[15px] py-[8.5px] px-3"}
                 name="Completed"
+                filteredStatus={filteredStatus}
               ></Button>
             </div>
 
             <div className="flex flex-col gap-4">
               {filteredData.map((todo, index) => (
                 <Task
-                  key={index}
+                  key={todo.id}
                   task={todo}
-                  index={index}
-                  setTodos={setTodos}
-                  todos={todos}
+                  onChange={(event) => handleOnChangeChecked(event, index)}
+                  onClick={() => handleOnClickDelete(index)}
                 ></Task>
               ))}
             </div>
@@ -114,15 +126,6 @@ const HomeToDo = () => {
 };
 export default HomeToDo;
 
-// const handleOnChangeChecked = (event) => {
-//   setTodos((prev) =>
-//     prev.map((el, i) => {
-//       if (i === index) el.isDone = event.target.checked;
-//       console.log(event.target.checked);
-//       return el;
-//     })
-//   );
-// };
 // const handleOnClickDelete = () => {
 //   const filteredTodos = todos.filter((todo, i) => i !== index);
 //   setTodos(filteredTodos);

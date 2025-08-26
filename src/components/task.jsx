@@ -1,28 +1,10 @@
-"use client";
-
-import { useState } from "react";
-
-export const Task = ({ task, index, setTodos, todos }) => {
-  const handleOnChangeChecked = (event) => {
-    setTodos((prev) =>
-      prev.map((el, i) => {
-        if (i === index) el.isDone = event.target.checked;
-        // console.log(event.target.checked);
-        return el;
-      })
-    );
-  };
-  const handleOnClickDelete = () => {
-    const filteredRemainedTodos = todos.filter((todo, ind) => ind !== index);
-    setTodos(filteredRemainedTodos);
-  };
-
+export const Task = ({ task, onChange, onClick }) => {
   return (
     <div className="w-full h-[62px] flex items-center justify-between px-4 rounded-md bg-gray-100">
       <div className="flex gap-2.5 items-center">
         <input
           type="checkbox"
-          onChange={handleOnChangeChecked}
+          onChange={onChange}
           checked={task.isDone}
           className="w-5 h-5 rounded-xs bg-red-700 border border-[#767676]"
         ></input>
@@ -37,7 +19,7 @@ export const Task = ({ task, index, setTodos, todos }) => {
 
       {task.isDone && (
         <button
-          onClick={handleOnClickDelete}
+          onClick={onClick}
           className="text-sm text-red-500 bg-red-50 px-3 py-[6.5px] rounded-md"
         >
           Delete
@@ -46,3 +28,17 @@ export const Task = ({ task, index, setTodos, todos }) => {
     </div>
   );
 };
+
+// const handleOnChangeChecked = (event) => {
+//   setTodos((prev) =>
+//     prev.map((el, i) => {
+//       if (i === index) el.isDone = event.target.checked;
+//       // console.log(event.target.checked);
+//       return el;
+//     })
+//   );
+// };
+// const handleOnClickDelete = () => {
+//   const filteredRemainedTodos = todos.filter((todo, ind) => ind !== index);
+//   setTodos(filteredRemainedTodos);
+// };
