@@ -1,7 +1,8 @@
 "use client";
-import { v4 as uuidv4 } from "uuid";
+
 import { useState } from "react";
 import { Button, Task } from "@/components";
+import { v4 as uuidv4 } from "uuid";
 
 const HomeToDo = () => {
   const [inputValue, setInputValue] = useState("");
@@ -13,8 +14,16 @@ const HomeToDo = () => {
   };
 
   const handleOnClickAdd = () => {
-    setTodos([...todos, { title: inputValue, isDone: false, id: uuidv4() }]);
-
+    {
+      if (inputValue == "") {
+        alert("Please enter a task!");
+      } else {
+        setTodos([
+          ...todos,
+          { title: inputValue, isDone: false, id: uuidv4() },
+        ]);
+      }
+    }
     setInputValue("");
   };
 
@@ -44,8 +53,6 @@ const HomeToDo = () => {
   };
 
   const handleOnClickDeleteAllCompleted = () => {
-    // console.log("filteredData", filteredData);
-    // console.log("todos", todos);
     const remainedFilteredData = todos.filter((el) => {
       return el.isDone == false;
     });
@@ -115,7 +122,7 @@ const HomeToDo = () => {
             </div>
           </div>
 
-          {filteredData.length <= 0 ? (
+          {todos.length <= 0 ? (
             <p className="mt-8 text-sm leading-[17px] text-[#6B7280]">
               No tasks yet. Add one above!
             </p>
