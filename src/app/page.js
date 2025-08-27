@@ -44,8 +44,8 @@ const HomeToDo = () => {
   };
 
   const handleOnClickDeleteAllCompleted = () => {
-    console.log("filteredData", filteredData);
-    console.log("todos", todos);
+    // console.log("filteredData", filteredData);
+    // console.log("todos", todos);
     const remainedFilteredData = todos.filter((el) => {
       return el.isDone == false;
     });
