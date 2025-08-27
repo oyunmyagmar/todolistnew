@@ -42,3 +42,19 @@ export const Task = ({ task, onChange, onClick }) => {
 //   const filteredRemainedTodos = todos.filter((todo, ind) => ind !== index);
 //   setTodos(filteredRemainedTodos);
 // };
+
+// {
+//   filteredData.length <= 0 && (
+//     <p className="mt-8 text-sm leading-[17px] text-[#6B7280]">
+//       No tasks yet. Add one above!
+//     </p>
+//   );
+// }
+// <div className="w-full h-[37px] mt-5 flex justify-between pt-4 pb-1 text-sm border-t border-zinc-200">
+//   <p className="text-gray-500">
+//     {todos.filter((el) => el.isDone).length} of {todos.length} tasks completed
+//   </p>
+//   <button onClick={handleOnClickDeleteAllCompleted} className="text-red-500">
+//     Clear completed
+//   </button>
+// </div>;

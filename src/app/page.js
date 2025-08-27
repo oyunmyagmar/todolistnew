@@ -18,16 +18,16 @@ const HomeToDo = () => {
     setInputValue("");
   };
 
-  const handleOnChangeChecked = (event, index) => {
-    const checkedTodo = todos.map((todo, i) => {
-      if (i === index) todo.isDone = event.target.checked;
+  const handleOnChangeChecked = (event, id) => {
+    const checkedTodo = todos.map((todo) => {
+      if (todo.id === id) todo.isDone = event.target.checked;
       return todo;
     });
     setTodos(checkedTodo);
   };
 
-  const handleOnClickDelete = (index) => {
-    const filteredRemainedTodos = todos.filter((todo, i) => i !== index);
+  const handleOnClickDelete = (id) => {
+    const filteredRemainedTodos = todos.filter((todo) => todo.id !== id);
     setTodos(filteredRemainedTodos);
   };
 
@@ -44,8 +44,9 @@ const HomeToDo = () => {
   };
 
   const handleOnClickDeleteAllCompleted = () => {
-    console.log(filteredData);
-    const remainedFilteredData = filteredData.filter((el) => {
+    console.log("filteredData", filteredData);
+    console.log("todos", todos);
+    const remainedFilteredData = todos.filter((el) => {
       return el.isDone == false;
     });
     setTodos(remainedFilteredData);
@@ -107,8 +108,8 @@ const HomeToDo = () => {
                 <Task
                   key={todo.id}
                   task={todo}
-                  onChange={(event) => handleOnChangeChecked(event, index)}
-                  onClick={() => handleOnClickDelete(index)}
+                  onChange={(event) => handleOnChangeChecked(event, todo.id)}
+                  onClick={() => handleOnClickDelete(todo.id)}
                 ></Task>
               ))}
             </div>
@@ -121,7 +122,8 @@ const HomeToDo = () => {
           ) : (
             <div className="w-full h-[37px] mt-5 flex justify-between pt-4 pb-1 text-sm border-t border-zinc-200">
               <p className="text-gray-500">
-                {filteredData.length} of {todos.length} tasks completed
+                {todos.filter((el) => el.isDone).length} of {todos.length} tasks
+                completed
               </p>
               <button
                 onClick={handleOnClickDeleteAllCompleted}
