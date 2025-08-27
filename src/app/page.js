@@ -6,7 +6,7 @@ import { Button, Task } from "@/components";
 const HomeToDo = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
-  const [filteredStatus, setFilteredStatus] = useState("all");
+  const [filteredStatus, setFilteredStatus] = useState("All");
 
   const handleOnChange = (event) => {
     setInputValue(event.target.value);
@@ -14,6 +14,7 @@ const HomeToDo = () => {
 
   const handleOnClickAdd = () => {
     setTodos([...todos, { title: inputValue, isDone: false, id: uuidv4() }]);
+
     setInputValue("");
   };
 
@@ -31,20 +32,28 @@ const HomeToDo = () => {
   };
 
   const handleOnClickAll = () => {
-    setFilteredStatus("all");
+    setFilteredStatus("All");
   };
 
   const handleOnClickActive = () => {
-    setFilteredStatus("active");
+    setFilteredStatus("Active");
   };
 
   const handleOnClickCompleted = () => {
-    setFilteredStatus("completed");
+    setFilteredStatus("Completed");
+  };
+
+  const handleOnClickDeleteAllCompleted = () => {
+    console.log(filteredData);
+    const remainedFilteredData = filteredData.filter((el) => {
+      return el.isDone == false;
+    });
+    setTodos(remainedFilteredData);
   };
 
   const filteredData = todos.filter((todo) => {
-    if (filteredStatus === "all") return todo;
-    if (filteredStatus === "active") return !todo.isDone;
+    if (filteredStatus === "All") return todo;
+    if (filteredStatus === "Active") return !todo.isDone;
     return todo.isDone;
   });
 
@@ -71,6 +80,7 @@ const HomeToDo = () => {
                 name="Add"
               ></Button>
             </div>
+
             <div className="flex gap-1.5">
               <Button
                 onClick={handleOnClickAll}
@@ -102,16 +112,25 @@ const HomeToDo = () => {
                 ></Task>
               ))}
             </div>
-
-            {/* <div className="w-full h-[37px] flex justify-between pt-4 pb-1 text-sm border-t border-zinc-200">
-              <p className="text-gray-500">1 of 2 tasks completed</p>
-              <p className="text-red-500">Clear completed</p>
-            </div> */}
           </div>
 
-          <p className="mt-8 text-sm leading-[17px] text-[#6B7280]">
-            No tasks yet. Add one above!
-          </p>
+          {filteredData.length <= 0 ? (
+            <p className="mt-8 text-sm leading-[17px] text-[#6B7280]">
+              No tasks yet. Add one above!
+            </p>
+          ) : (
+            <div className="w-full h-[37px] mt-5 flex justify-between pt-4 pb-1 text-sm border-t border-zinc-200">
+              <p className="text-gray-500">
+                {filteredData.length} of {todos.length} tasks completed
+              </p>
+              <button
+                onClick={handleOnClickDeleteAllCompleted}
+                className="text-red-500"
+              >
+                Clear completed
+              </button>
+            </div>
+          )}
         </div>
 
         <p className="mt-10 text-xs leading-[15px] text-[#6B7280]">
@@ -125,8 +144,3 @@ const HomeToDo = () => {
   );
 };
 export default HomeToDo;
-
-// const handleOnClickDelete = () => {
-//   const filteredTodos = todos.filter((todo, i) => i !== index);
-//   setTodos(filteredTodos);
-// };
