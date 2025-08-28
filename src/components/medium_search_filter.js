@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 const items = ["Apple", "Banana", "Carrot", "Date", "Eggplant", "Fig", "Grape"];
