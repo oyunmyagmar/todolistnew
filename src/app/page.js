@@ -14,16 +14,10 @@ const HomeToDo = () => {
   };
 
   const handleOnClickAdd = () => {
-    {
-      if (inputValue == "") {
-        alert("Please enter a task!");
-      } else {
-        setTodos([
-          ...todos,
-          { title: inputValue, isDone: false, id: uuidv4() },
-        ]);
-      }
+    if (inputValue === "") {
+      return alert("Please enter a task!");
     }
+    setTodos([...todos, { title: inputValue, isDone: false, id: uuidv4() }]);
     setInputValue("");
   };
 
